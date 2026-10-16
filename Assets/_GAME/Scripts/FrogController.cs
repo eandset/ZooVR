@@ -1,25 +1,20 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FrogController : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-    [SerializeField] private GameObject frog;
-    [SerializeField] private Transform waterPoint;
-    [SerializeField] private GameObject vfxWater;
     [SerializeField] private float delay;
 
     [Header("Action Weights")]
     [SerializeField, Min(1)] private int idleWeight;
     [SerializeField, Min(1)] private int jumpWeight;
-
-    private const string IdleIndex = nameof(IdleIndex);
-    private const string JumpTrigger = nameof(JumpTrigger);
+    
+    private static readonly int IdleIndex = Animator.StringToHash("IdleIndex");
+    private static readonly int JumpTrigger = Animator.StringToHash("JumpTrigger");
 
     private readonly int[] _idleIndexes = { 1, 3 };
 
     private float _timer;
-    private bool _isInWater;
 
     private void Update()
     {
@@ -30,7 +25,7 @@ public class FrogController : MonoBehaviour
         }
 
         var randomAction = Random.Range(0, idleWeight + jumpWeight);
-        var condition = _isInWater ? randomAction >= idleWeight : randomAction < idleWeight;
+        var condition = randomAction < idleWeight;
 
         if (condition)
             Idle();
@@ -47,17 +42,6 @@ public class FrogController : MonoBehaviour
 
     private void Jump()
     {
-        var vfxSpawned = Instantiate(vfxWater, waterPoint.transform.position, Quaternion.identity);
-        Destroy(vfxSpawned, 2);
-
-        if (_isInWater)
-        {
-            frog.transform.SetPositionAndRotation(waterPoint.position, waterPoint.rotation);
-            frog.SetActive(true);
-        }
-
-        _isInWater = !_isInWater;
-
         animator.SetTrigger(JumpTrigger);
     }
 
