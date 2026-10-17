@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 700840659963572861}
   - component: {fileID: 8291469549449751365}
   - component: {fileID: 1121949648697021558}
-  - component: {fileID: 2025611510663227275}
   - component: {fileID: 797931695169337240}
+  - component: {fileID: 2948800607681720310}
   m_Layer: 0
   m_Name: Lily Interactable
   m_TagString: Untagged
@@ -233,22 +233,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LilyLeafPuzzle
   returnDuration: 0.5
   smoothReturn: 1
---- !u!114 &2025611510663227275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2502615831494095949}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18c2b6438df24d0981b68848dd5ed694, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LilyWobble
-  target: {fileID: 7345765490810560338}
-  duration: 0.8
-  strength: 5
-  vibrato: 20
 --- !u!114 &797931695169337240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,6 +247,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   outline: {fileID: 4028959258495057951}
   grabInteractable: {fileID: 8291469549449751365}
+--- !u!114 &2948800607681720310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502615831494095949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae1a07c17a4345a79076726f04671334, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FailContainer
+  handlers:
+  - rid: 7520331180160319773
+  references:
+    version: 2
+    RefIds:
+    - rid: 7520331180160319773
+      type: {class: LilyWobble, ns: , asm: Assembly-CSharp}
+      data:
+        target: {fileID: 7345765490810560338}
+        duration: 0.5
+        strength: 5
+        vibrato: 15
 --- !u!1 &3666321914569532364
 GameObject:
   m_ObjectHideFlags: 0
