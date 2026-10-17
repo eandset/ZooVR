@@ -3,7 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 
 [Serializable]
-public class LilyWobble : IFailHandler, IFailInitialize
+public class WobbleFailHandler : IFailHandler, IFailInitialize
 {
     [SerializeField] private Transform target;
     [SerializeField] private float duration = 0.5f;
