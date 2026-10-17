@@ -34,6 +34,8 @@ public class PunchDOTween : MonoBehaviour
         sequence.Append(transform.DOLocalMove(targetPosition, duration).SetEase(easeType));
         sequence.Append(transform.DOLocalMove(originalPosition, duration).SetEase(easeType));
         
+        _currentTween = sequence;
+        
         yield return sequence.Play().WaitForCompletion();
     }
 }
