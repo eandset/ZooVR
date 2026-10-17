@@ -8442,7 +8442,6 @@ MonoBehaviour:
   offset: {x: 0, y: 0.2, z: 0}
   duration: 0.5
   easeType: 7
-  useAutoPlay: 1
 --- !u!1001 &832040759
 PrefabInstance:
   m_ObjectHideFlags: 0
