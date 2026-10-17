@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class ResetInteractionTrigger : MonoBehaviour
 {
@@ -16,16 +17,17 @@ public class ResetInteractionTrigger : MonoBehaviour
     {
         grabInteractable.selectEntered.RemoveListener(OnGrabStarted);
     }
-    
+
     private void OnGrabStarted(SelectEnterEventArgs args)
     {
         if (detector.IsPlayerStay)
         {
             if (grabInteractable is IXRSelectInteractable selectInteractable)
             {
-                grabInteractable.interactionManager.CancelInteractableSelection(selectInteractable);
+                if (args.interactorObject is XRDirectInteractor or XRRayInteractor)
+                    grabInteractable.interactionManager.CancelInteractableSelection(selectInteractable);
             }
-            
+
             if (grabInteractable.TryGetComponent<IFailHandler>(out var failHandler))
             {
                 failHandler.HandleFail();
