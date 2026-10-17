@@ -1,55 +1,39 @@
-using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 public class LilyWobble : MonoBehaviour, IFailHandler
 {
     [SerializeField] private Transform target;
-    [SerializeField] private float wobbleAngle = 8f;
-    [SerializeField] private float wobbleFrequency = 12f;
-    [SerializeField] private float decayRate = 3f;
-    [SerializeField] private float duration = 1.5f;
+    [SerializeField] private float duration = 0.5f;
+    [SerializeField] private float strength = 5f; // Сила/угол вибрации
+    [SerializeField] private int vibrato = 10;     // Частота (количество колебаний)
 
-    private Quaternion baseLocalRotation;
-    private Coroutine wobbleCoroutine;
+    private Quaternion _baseLocalRotation;
+    private Tween _wobbleTween;
 
     private void Awake()
     {
-        baseLocalRotation = target.localRotation;
+        if (target == null)
+            target = transform;
+        
+        _baseLocalRotation = target.localRotation;
     }
     
     public void HandleFail()
     {
-        if (wobbleCoroutine != null)
+        if (_wobbleTween != null && _wobbleTween.IsActive())
         {
-            StopCoroutine(wobbleCoroutine);
-        }
-
-        wobbleCoroutine = StartCoroutine(WobbleRoutine());
-    }
-
-    private IEnumerator WobbleRoutine()
-    {
-        float elapsedTime = 0f;
-
-        float randomDirX = Random.Range(-1f, 1f);
-        float randomDirZ = Random.Range(-1f, 1f);
-        Vector3 wobbleAxis = new Vector3(randomDirX, 0f, randomDirZ).normalized;
-
-        while (elapsedTime < duration)
-        {
-            elapsedTime += Time.deltaTime;
-            
-            float dampening = Mathf.Exp(-decayRate * elapsedTime);
-            
-            float currentAngle = Mathf.Sin(elapsedTime * wobbleFrequency) * wobbleAngle * dampening;
-            
-            Quaternion offsetRotation = Quaternion.AngleAxis(currentAngle, wobbleAxis);
-            target.localRotation = baseLocalRotation * offsetRotation;
-
-            yield return null;
+            _wobbleTween.Kill();
+            target.localRotation = _baseLocalRotation;
         }
         
-        target.localRotation = baseLocalRotation;
-        wobbleCoroutine = null;
+        _wobbleTween = target.DOShakeRotation(duration, new Vector3(strength, 0f, strength), vibrato, 90f, false)
+            .SetAutoKill(false)
+            .SetEase(Ease.InOutSine)
+            .OnComplete(() => {
+                target.localRotation = _baseLocalRotation;
+            });
+        
+        _wobbleTween.Play();
     }
 }

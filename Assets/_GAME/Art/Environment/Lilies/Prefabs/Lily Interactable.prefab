@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8291469549449751365}
   - component: {fileID: 1121949648697021558}
   - component: {fileID: 2025611510663227275}
+  - component: {fileID: 797931695169337240}
   m_Layer: 0
   m_Name: Lily Interactable
   m_TagString: Untagged
@@ -123,34 +124,10 @@ MonoBehaviour:
       m_Calls: []
   m_HoverEntered:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1433851253446935580}
-        m_TargetAssemblyTypeName: Outline, Assembly-CSharp-firstpass
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   m_HoverExited:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1433851253446935580}
-        m_TargetAssemblyTypeName: Outline, Assembly-CSharp-firstpass
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_FirstSelectEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -268,11 +245,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c2b6438df24d0981b68848dd5ed694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LilyWobble
-  target: {fileID: 0}
-  wobbleAngle: 10
-  wobbleFrequency: 20
-  decayRate: 3
-  duration: 1.5
+  target: {fileID: 7345765490810560338}
+  duration: 0.8
+  strength: 5
+  vibrato: 20
+--- !u!114 &797931695169337240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502615831494095949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e98d532fc6b01438aeee5178f3256a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  outline: {fileID: 4028959258495057951}
+  grabInteractable: {fileID: 8291469549449751365}
 --- !u!1 &3666321914569532364
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,6 +386,7 @@ GameObject:
   - component: {fileID: 140504963191542407}
   - component: {fileID: 1737853025324519882}
   - component: {fileID: 7944856077891754471}
+  - component: {fileID: 6473052875848570855}
   m_Layer: 0
   m_Name: DisableTrigger
   m_TagString: Untagged
@@ -452,6 +443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   grabInteractable: {fileID: 8291469549449751365}
+  detector: {fileID: 6473052875848570855}
 --- !u!54 &7944856077891754471
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -479,6 +471,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6473052875848570855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7939655891886206658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4438a104a957ac7478bef06b495540f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerDetector
+  OnPlayerEntered:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerExited:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &5027369106443755986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -549,27 +559,27 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5483171298552341434, guid: b1d67e495f3a9cb46ab51dafa62d9470, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1433851253446935580}
+      addedObject: {fileID: 4028959258495057951}
   m_SourcePrefab: {fileID: 100100000, guid: b1d67e495f3a9cb46ab51dafa62d9470, type: 3}
 --- !u!1 &710705273459573352 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5483171298552341434, guid: b1d67e495f3a9cb46ab51dafa62d9470, type: 3}
   m_PrefabInstance: {fileID: 5027369106443755986}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1433851253446935580
+--- !u!114 &4028959258495057951
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 710705273459573352}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp-firstpass::Outline
+  m_EditorClassIdentifier: Assembly-CSharp-firstpass::Plugins.QuickOutline.Scripts.Outline
   outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineColor: {r: 0.6607475, g: 0.9622642, b: 0.503827, a: 1}
   outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []

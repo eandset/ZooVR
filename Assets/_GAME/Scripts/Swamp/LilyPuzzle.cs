@@ -24,13 +24,13 @@ public class LilyPuzzle : MonoBehaviour
     private void SubscribeEvents()
     {
         foreach (var failTrigger in dangerTriggers)
-            failTrigger.OnPlayerTriggered.AddListener(OnPlayerFailed);
+            failTrigger.OnPlayerEntered.AddListener(OnPlayerFailed);
     }
 
     private void UnsubscribeEvents()
     {
         foreach (var failTrigger in dangerTriggers)
-            failTrigger.OnPlayerTriggered.RemoveListener(OnPlayerFailed);
+            failTrigger.OnPlayerEntered.RemoveListener(OnPlayerFailed);
     }
 
     public void OnPlayerFailed(XRGrabInteractable source)

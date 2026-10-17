@@ -2,12 +2,10 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
-[RequireComponent(typeof(Collider))]
 public class ResetInteractionTrigger : MonoBehaviour
 {
     [SerializeField] private XRGrabInteractable grabInteractable;
-
-    private bool _isPlayerInside;
+    [SerializeField] private PlayerDetector detector;
 
     private void OnEnable()
     {
@@ -18,26 +16,10 @@ public class ResetInteractionTrigger : MonoBehaviour
     {
         grabInteractable.selectEntered.RemoveListener(OnGrabStarted);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            _isPlayerInside = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            _isPlayerInside = false;
-        }
-    }
-
+    
     private void OnGrabStarted(SelectEnterEventArgs args)
     {
-        if (_isPlayerInside)
+        if (detector.IsPlayerStay)
         {
             if (grabInteractable is IXRSelectInteractable selectInteractable)
             {
