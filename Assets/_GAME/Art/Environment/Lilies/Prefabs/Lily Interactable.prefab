@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4484378237461990322}
   - component: {fileID: 797931695169337240}
   - component: {fileID: 2948800607681720310}
+  - component: {fileID: 6609607588565144147}
   m_Layer: 0
   m_Name: Lily Interactable
   m_TagString: Untagged
@@ -232,6 +233,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d6c7ba914b9c4469dedaa7552ef572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LilyLeafPuzzle
+  detector: {fileID: 6473052875848570855}
+  view: {fileID: 4484378237461990322}
+  socket: {fileID: 3048135911363868931}
 --- !u!114 &4484378237461990322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -245,7 +249,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LilyLeafBridgeView
   returnDuration: 0.5
-  smoothReturn: 1
 --- !u!114 &797931695169337240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,6 +287,18 @@ MonoBehaviour:
         duration: 0.5
         strength: 5
         vibrato: 15
+--- !u!114 &6609607588565144147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502615831494095949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb1194501597427bb37d4bbc1dd94615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractableSocketDropDetector
 --- !u!1 &3666321914569532364
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +420,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1225461376586054707}
   - component: {fileID: 140504963191542407}
-  - component: {fileID: 1737853025324519882}
   - component: {fileID: 7944856077891754471}
   - component: {fileID: 6473052875848570855}
   m_Layer: 0
@@ -451,20 +465,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 4, z: 1}
   m_Center: {x: 0, y: 1.5, z: 0}
---- !u!114 &1737853025324519882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7939655891886206658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dde76d15e13e696429f7431c60b6583c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  grabInteractable: {fileID: 8291469549449751365}
-  detector: {fileID: 6473052875848570855}
 --- !u!54 &7944856077891754471
 Rigidbody:
   m_ObjectHideFlags: 0
