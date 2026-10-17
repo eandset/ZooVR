@@ -46,7 +46,5 @@ public class ColorFailHandler : IFailHandler, IFailInitialize
             {
                 _material.SetColor(EmissionColor, originalEmissionColor);
             });
-
-        _pulseTween.Play();
     }
 }

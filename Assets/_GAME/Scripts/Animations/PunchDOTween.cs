@@ -11,7 +11,6 @@ public class PunchDOTween : MonoBehaviour
     {
         transform.DOLocalMove(transform.position + offset, duration)
             .SetEase(easeType)
-            .SetLoops(-1, LoopType.Yoyo)
-            .Play();
+            .SetLoops(-1, LoopType.Yoyo);
     }
 }

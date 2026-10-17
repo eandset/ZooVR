@@ -30,7 +30,5 @@ public class LilyWobble : IFailHandler, IFailInitialize
             .SetAutoKill(false)
             .SetEase(Ease.InOutSine)
             .OnComplete(() => { target.localRotation = _baseLocalRotation; });
-
-        _wobbleTween.Play();
     }
 }
