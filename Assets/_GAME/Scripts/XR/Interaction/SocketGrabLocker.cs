@@ -18,13 +18,16 @@ public class SocketGrabLocker : IInitializable, IDisposable
     public void Initialize()
     {
         _grabInteractable.selectEntered.AddListener(OnSelectEntered);
-        _grabInteractable.selectExited.AddListener(OnSelectExited);
     }
 
     public void Dispose()
     {
         _grabInteractable.selectEntered.RemoveListener(OnSelectEntered);
-        _grabInteractable.selectExited.RemoveListener(OnSelectExited);
+    }
+    
+    public void EnableSocket()
+    {
+        _socketToDisable.enabled = true;
     }
 
     private void OnSelectEntered(SelectEnterEventArgs args)
@@ -33,10 +36,5 @@ public class SocketGrabLocker : IInitializable, IDisposable
         {
             _socketToDisable.enabled = false;
         }
-    }
-
-    private void OnSelectExited(SelectExitEventArgs args)
-    {
-        _socketToDisable.enabled = true;
     }
 }

@@ -2,10 +2,8 @@ using System;
 using UnityEngine;
 using DG.Tweening;
 
-[RequireComponent(typeof(InteractableSocketDropDetector))]
 public class LilyLeafBridgeView : MonoBehaviour, IReturnable
 {
-    [SerializeField] private InteractableSocketDropDetector dropDetector;
     [SerializeField] private float returnDuration = 0.5f;
 
     public event Action OnReturnStarted;
@@ -21,17 +19,7 @@ public class LilyLeafBridgeView : MonoBehaviour, IReturnable
         _originalRotation = transform.rotation;
     }
 
-    private void OnEnable()
-    {
-        dropDetector.OnDroppedOutsideSocket += ReturnPosition;
-    }
-
-    private void OnDisable()
-    {
-        dropDetector.OnDroppedOutsideSocket -= ReturnPosition;
-    }
-
-    private void ReturnPosition()
+    public void ReturnPosition()
     {
         _returnTween?.Kill();
 

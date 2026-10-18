@@ -1,53 +1,56 @@
 using System;
 using System.Linq;
-using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using Zenject;
 
-[RequireComponent(typeof(XRGrabInteractable))]
-public class InteractableSocketDropDetector : MonoBehaviour
+public class InteractableSocketDropDetector : IInitializable, IDisposable
 {
-    public event Action OnDroppedOutsideSocket;
+    public event Action OnDroppedOutside;
+    public event Action OnDroppedInside;
 
-    private XRGrabInteractable _grabInteractable;
+    private readonly XRGrabInteractable _grabInteractable;
 
-    private void Awake()
+    public InteractableSocketDropDetector(XRGrabInteractable grabInteractable)
     {
-        _grabInteractable = GetComponent<XRGrabInteractable>();
+        _grabInteractable = grabInteractable;
     }
 
-    private void OnEnable()
+    public void Initialize()
     {
         _grabInteractable.selectExited.AddListener(OnSelectExited);
     }
 
-    private void OnDisable()
+    public void Dispose()
     {
         _grabInteractable.selectExited.RemoveListener(OnSelectExited);
     }
 
     private void OnSelectExited(SelectExitEventArgs args)
     {
+        if (IsSocketInteract(args))
+            OnDroppedInside?.Invoke();
+        else
+            OnDroppedOutside?.Invoke();
+    }
+
+    private bool IsSocketInteract(SelectExitEventArgs args)
+    {
         if (args.interactorObject is XRSocketInteractor)
         {
-            return;
+            return true;
         }
-        
+
         if (_grabInteractable.isSelected)
         {
             if (_grabInteractable.interactorsSelecting.OfType<XRSocketInteractor>().Any())
             {
-                return;
+                return true;
             }
         }
-        
-        if (IsInAnySocket())
-        {
-            return;
-        }
-        
-        OnDroppedOutsideSocket?.Invoke();
+
+        return IsInAnySocket();
     }
 
     private bool IsInAnySocket()
@@ -59,7 +62,7 @@ public class InteractableSocketDropDetector : MonoBehaviour
 
             if (_grabInteractable is not IXRSelectInteractable selectInteractable)
                 continue;
-            
+
             if (socket.CanSelect(selectInteractable))
             {
                 return true;
