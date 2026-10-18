@@ -13,32 +13,17 @@ public class LilyPuzzle : MonoBehaviour
 
     private void OnEnable()
     {
-        SubscribeEvents();
-    }
-
-    private void OnDisable()
-    {
-        UnsubscribeEvents();
-    }
-
-    private void SubscribeEvents()
-    {
         foreach (var failTrigger in dangerTriggers)
             failTrigger.OnPlayerEntered.AddListener(OnPlayerFailed);
     }
 
-    private void UnsubscribeEvents()
+    private void OnDisable()
     {
         foreach (var failTrigger in dangerTriggers)
             failTrigger.OnPlayerEntered.RemoveListener(OnPlayerFailed);
     }
 
-    public void OnPlayerFailed(XRGrabInteractable source)
-    {
-        OnPlayerFailed(source.gameObject);
-    }
-
-    public void OnPlayerFailed(GameObject source)
+    private void OnPlayerFailed(GameObject source)
     {
         TeleportPlayerToStart();
 
