@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
@@ -11,10 +10,12 @@ public class InteractableSocketDropDetector : IInitializable, IDisposable
     public event Action OnDroppedInside;
 
     private readonly XRGrabInteractable _grabInteractable;
+    private readonly PlayerDetector _playerDetector;
 
-    public InteractableSocketDropDetector(XRGrabInteractable grabInteractable)
+    public InteractableSocketDropDetector(XRGrabInteractable grabInteractable, PlayerDetector playerDetector = null)
     {
         _grabInteractable = grabInteractable;
+        _playerDetector = playerDetector;
     }
 
     public void Initialize()
@@ -29,28 +30,16 @@ public class InteractableSocketDropDetector : IInitializable, IDisposable
 
     private void OnSelectExited(SelectExitEventArgs args)
     {
-        if (IsSocketInteract(args))
+        if (_playerDetector && _playerDetector.IsPlayerStay)
+            return; 
+
+        if (_grabInteractable.isSelected)
+            return;
+
+        if (IsInAnySocket())
             OnDroppedInside?.Invoke();
         else
             OnDroppedOutside?.Invoke();
-    }
-
-    private bool IsSocketInteract(SelectExitEventArgs args)
-    {
-        if (args.interactorObject is XRSocketInteractor)
-        {
-            return true;
-        }
-
-        if (_grabInteractable.isSelected)
-        {
-            if (_grabInteractable.interactorsSelecting.OfType<XRSocketInteractor>().Any())
-            {
-                return true;
-            }
-        }
-
-        return IsInAnySocket();
     }
 
     private bool IsInAnySocket()

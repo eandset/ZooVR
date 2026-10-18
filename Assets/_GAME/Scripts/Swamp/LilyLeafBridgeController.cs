@@ -18,7 +18,7 @@ public class LilyLeafBridgeController : MonoBehaviour
     {
         var failHandler = GetComponent<IFailHandler>();
 
-        _dropDetector = new InteractableSocketDropDetector(interactable);
+        _dropDetector = new InteractableSocketDropDetector(interactable, detector);
         _presenceGrabBlocker = new PlayerPresenceGrabBlocker(detector, interactable, failHandler);
         _socketGrabLocker = new SocketGrabLocker(interactable, socket);
         _returnBlocker = new ReturnBlocker(interactable, socket, view);
