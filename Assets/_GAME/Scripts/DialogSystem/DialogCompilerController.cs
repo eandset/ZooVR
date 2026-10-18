@@ -53,11 +53,11 @@ public class DialogCompilerController : MonoBehaviour
 
         currentDialogueNode = node;
 
-        var textsToDisplay = new List<string> { node.Node.Text };
+        var textsToDisplay = new List<DialogueText> { node.Node.Text };
 
         if (node.Answers != null)
         {
-            textsToDisplay.AddRange(node.Answers.Select(answer => answer.Text));
+            textsToDisplay.AddRange(node.Answers.Select(x => x.Text));
         }
 
         dialogueView.DisplayDialogue(textsToDisplay.ToArray());

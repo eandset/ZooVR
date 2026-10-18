@@ -1,6 +1,7 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewDialogueNode", menuName = "VR/Dialogue Node")]
+[CreateAssetMenu(fileName = "NewDialogueNode", menuName = "DialogSystem/Node")]
 public class DialogueNodeSO : ScriptableObject
 {
     [field: SerializeField] public Dialogue Node { get; private set; }
@@ -10,8 +11,17 @@ public class DialogueNodeSO : ScriptableObject
 [System.Serializable]
 public struct Dialogue
 {
-    [TextArea(3, 10)]
-    public string Text;
-    
+    public DialogueText Text;
     public DialogueNodeSO NextNode;
+}
+
+[System.Serializable]
+public struct DialogueText
+{
+    [TextArea(3, 10)]
+    public string Message;
+    
+    [Header("Animation")]
+    [CanBeNull] public InputTextAnimationConfig InputAnimation;
+    [CanBeNull] public ProcessTextAnimationConfig ProcessAnimation;
 }

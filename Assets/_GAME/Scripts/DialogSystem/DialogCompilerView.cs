@@ -29,52 +29,70 @@ public class DialogCompilerView : MonoBehaviour
         }
     }
     
-    public void DisplayDialogue(params string[] texts)
+    public void DisplayDialogue(params DialogueText[] texts)
     {
         if (currentSequence != null) StopCoroutine(currentSequence);
         currentSequence = StartCoroutine(AnimateDialogueRoutine(texts));
     }
 
-    private IEnumerator AnimateDialogueRoutine(string[] texts)
+    private IEnumerator AnimateDialogueRoutine(DialogueText[] texts)
     {
         InitializeTextDisplays();
-     
-        yield return mainMonitor.TextDisplay.TypeTextRoutine(texts[0]);
-
-        var hasAnswers = texts.Length > 1;
+        
+        yield return ShowMainText(texts[0]);
+        
+        bool hasAnswers = texts.Length > 1;
         
         if (hasAnswers)
-            mainMonitor.TextDisplay.AnimateFlash();
+        {
+            yield return ShowAnswerChoices(texts);
+        }
         
         mainMonitor.SetInteractive(!hasAnswers);
-
-        yield return ShowAnswerChoices(texts);
     }
 
     private void InitializeTextDisplays()
     {
-        mainMonitor.TextDisplay.ResetAnimations();
+        mainMonitor.SetInteractive(false);
         
         foreach (var monitor in answerMonitors)
         {
-            monitor.TextDisplay.SetText("");
-            monitor.TextDisplay.ResetAnimations();
-            
+            monitor.TextDisplay.ResetText();
             monitor.SetInteractive(false);
         }
     }
+
+    private IEnumerator ShowMainText(DialogueText text)
+    {
+        mainMonitor.SetInteractive(false);
+
+        mainMonitor.TextDisplay.SetInputAnimation(text.InputAnimation);
+        
+        yield return mainMonitor.TextDisplay.SetAnimateText(text.Message);
+        
+        mainMonitor.TextDisplay.SetProcessAnimation(text.ProcessAnimation);
+        mainMonitor.TextDisplay.PlayProcessAnimation();
+    }
     
-    private IEnumerator ShowAnswerChoices(string[] texts)
+    private IEnumerator ShowAnswerChoices(DialogueText[] texts)
     {
         int answerCount = texts.Length - 1;
         
         for (int i = 0; i < answerCount && i < answerMonitors.Count; i++)
         {
+            var dialogueText = texts[i + 1];
+            var monitor = answerMonitors[i];
+            
+            monitor.TextDisplay.SetInputAnimation(dialogueText.InputAnimation);
+            
             yield return new WaitForSeconds(delayBetweenAnswers);
-
-            yield return answerMonitors[i].TextDisplay.TypeTextRoutine(texts[i + 1]);
-
-            answerMonitors[i].SetInteractive(true);
+            
+            yield return monitor.TextDisplay.SetAnimateText(dialogueText.Message);
+            
+            monitor.TextDisplay.SetProcessAnimation(dialogueText.ProcessAnimation);
+            monitor.TextDisplay.PlayProcessAnimation();
+            
+            monitor.SetInteractive(true);
         }
     }
 
@@ -82,12 +100,15 @@ public class DialogCompilerView : MonoBehaviour
     {
         if (currentSequence != null) StopCoroutine(currentSequence);
 
+        mainMonitor.TextDisplay.SetInputAnimation(null);
+        mainMonitor.TextDisplay.SetProcessAnimation(null);
+        
         mainMonitor.TextDisplay.SetText(endMessage);
         mainMonitor.SetInteractive(false);
 
         foreach (var monitor in answerMonitors)
         {
-            monitor.TextDisplay.SetText("");
+            monitor.TextDisplay.ResetText();
             monitor.SetInteractive(false);
         }
     }

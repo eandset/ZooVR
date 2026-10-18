@@ -6,36 +6,63 @@ using UnityEngine;
 public class MonitorTextDisplay : MonoBehaviour
 {
     [SerializeField] private TMP_Text screenText;
-    [SerializeField] private float typingSpeed;
 
-    private Tween _flashTween;
+    private InputTextAnimationConfig _inputConfig;
+    private ProcessTextAnimationConfig _processConfig;
 
     public void SetText(string text)
     {
+        screenText.DOKill();
+
+        screenText.alpha = 1f;
         screenText.text = text;
     }
 
-    public IEnumerator TypeTextRoutine(string text)
+    public IEnumerator SetAnimateText(string text)
     {
-        screenText.text = "";
-        foreach (char letter in text)
+        StopProcessAnimation();
+
+        if (_inputConfig)
         {
-            screenText.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
+            yield return _inputConfig.Animate(screenText, text);
+        }
+        else
+        {
+            SetText(text);
         }
     }
 
-    public void ResetAnimations()
+    public void ResetText()
     {
-        _flashTween?.Kill();
-        screenText.alpha = 1;
-    }
-    
-    public void AnimateFlash()
-    {
-        _flashTween?.Kill();
+        screenText.DOKill();
 
-        _flashTween = screenText.DOFade(0.5f, 0.5f)
-            .SetLoops(-1, LoopType.Yoyo);
+        screenText.text = "";
+        screenText.alpha = 1f;
+    }
+
+    public void SetInputAnimation(InputTextAnimationConfig config)
+    {
+        _inputConfig = config;
+    }
+
+    public void SetProcessAnimation(ProcessTextAnimationConfig config)
+    {
+        _processConfig = config;
+    }
+
+    public void PlayProcessAnimation()
+    {
+        if (_processConfig)
+        {
+            _processConfig.Animate(screenText);
+        }
+    }
+
+    public void StopProcessAnimation()
+    {
+        if (_processConfig)
+        {
+            _processConfig.ResetAnimation(screenText);
+        }
     }
 }
