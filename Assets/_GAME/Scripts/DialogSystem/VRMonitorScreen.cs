@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -7,12 +6,14 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 [RequireComponent(typeof(XRSimpleInteractable))]
 public class VRMonitorScreen : MonoBehaviour
 {
-    [SerializeField] private TMP_Text screenText;
+    [SerializeField] private MonitorTextDisplay textDisplay;
 
     public UnityEvent OnScreenActivated;
 
     private XRSimpleInteractable interactable;
     private Collider monitorCollider;
+    
+    public MonitorTextDisplay TextDisplay => textDisplay;
 
     private void Awake()
     {
@@ -20,25 +21,10 @@ public class VRMonitorScreen : MonoBehaviour
         monitorCollider = GetComponent<Collider>();
     }
 
-    private void OnEnable()
-    {
-        interactable.selectEntered.AddListener(HandleInteraction);
-    }
+    private void OnEnable() => interactable.selectEntered.AddListener(HandleInteraction);
+    private void OnDisable() => interactable.selectEntered.RemoveListener(HandleInteraction);
 
-    private void OnDisable()
-    {
-        interactable.selectEntered.RemoveListener(HandleInteraction);
-    }
-
-    private void HandleInteraction(SelectEnterEventArgs args)
-    {
-        OnScreenActivated?.Invoke();
-    }
-
-    public void SetText(string text)
-    {
-        screenText.text = text;
-    }
+    private void HandleInteraction(SelectEnterEventArgs args) => OnScreenActivated?.Invoke();
 
     public void SetInteractive(bool isInteractive)
     {
