@@ -3,23 +3,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewDialogueNode", menuName = "VR/Dialogue Node")]
 public class DialogueNodeSO : ScriptableObject
 {
-    [TextArea(3, 10)]
-    [Tooltip("Текст, который выводится на главный монитор")]
-    public string mainQuestionText;
-
-    [Tooltip("Ссылка на следующий узел, если вариантов ответа НЕТ (просто продолжение монолога/диалога)")]
-    public DialogueNodeSO nextNode;
-
-    [Tooltip("Варианты ответа. Если они есть, поле nextNode игнорируется, а выбор идет через мониторы ответов")]
-    public DialogueAnswer[] answers;
+    [field: SerializeField] public Dialogue Node { get; private set; }
+    [field: SerializeField]  public Dialogue[] Answers { get; private set; }
 }
 
 [System.Serializable]
-public struct DialogueAnswer
+public struct Dialogue
 {
-    [Tooltip("Текст ответа на вспомогательном мониторе")]
-    public string answerText;
-
-    [Tooltip("Следующий узел диалога при выборе этого ответа")]
-    public DialogueNodeSO nextNode;
+    [TextArea(3, 10)]
+    public string Text;
+    
+    public DialogueNodeSO NextNode;
 }

@@ -53,11 +53,11 @@ public class DialogCompilerController : MonoBehaviour
 
         currentDialogueNode = node;
 
-        var textsToDisplay = new List<string> { node.mainQuestionText };
+        var textsToDisplay = new List<string> { node.Node.Text };
 
-        if (node.answers != null)
+        if (node.Answers != null)
         {
-            textsToDisplay.AddRange(node.answers.Select(answer => answer.answerText));
+            textsToDisplay.AddRange(node.Answers.Select(answer => answer.Text));
         }
 
         dialogueView.DisplayDialogue(textsToDisplay.ToArray());
@@ -68,21 +68,21 @@ public class DialogCompilerController : MonoBehaviour
         if (!currentDialogueNode)
             return;
 
-        if (currentDialogueNode.answers is { Length: > 0 })
+        if (currentDialogueNode.Answers is { Length: > 0 })
             return;
 
-        ShowNode(currentDialogueNode.nextNode);
+        ShowNode(currentDialogueNode.Node.NextNode);
     }
 
     private void HandleAnswerChosen(int answerIndex)
     {
-        if (!currentDialogueNode || currentDialogueNode.answers == null)
+        if (!currentDialogueNode || currentDialogueNode.Answers == null)
             return;
 
-        if (answerIndex >= 0 && answerIndex < currentDialogueNode.answers.Length)
+        if (answerIndex >= 0 && answerIndex < currentDialogueNode.Answers.Length)
         {
-            var selectedAnswer = currentDialogueNode.answers[answerIndex];
-            ShowNode(selectedAnswer.nextNode);
+            var selectedAnswer = currentDialogueNode.Answers[answerIndex];
+            ShowNode(selectedAnswer.NextNode);
         }
     }
 

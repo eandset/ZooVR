@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28a067b4ea949b29dbaee71c156ac06, type: 3}
   m_Name: 2.4 TurnOn
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNodeSO
-  mainQuestionText: "\u041F\u043E\u0447\u0442\u0438 \u0433\u043E\u0442\u043E\u0432\u043E."
-  nextNode: {fileID: 11400000, guid: f794b5d0dd508b542a46147d5d2ce962, type: 2}
-  answers: []
+  <Node>k__BackingField:
+    Text: "\u041F\u043E\u0447\u0442\u0438 \u0433\u043E\u0442\u043E\u0432\u043E."
+    NextNode: {fileID: 11400000, guid: f794b5d0dd508b542a46147d5d2ce962, type: 2}
+  <Answers>k__BackingField: []
