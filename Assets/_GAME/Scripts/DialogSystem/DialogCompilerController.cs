@@ -1,11 +1,24 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System;
+using UnityEngine.Events;
+
+[Serializable]
+public class DialogueEndingAction
+{
+    public DialogueNodeSO endingNode;
+    
+    public UnityEvent onEndingReached;
+}
 
 public class DialogCompilerController : MonoBehaviour
 {
     [SerializeField] private DialogCompilerView dialogueView;
     [SerializeField] private DialogueNodeSO currentDialogueNode;
+
+    [Header("Endings & Actions")]
+    [SerializeField] private List<DialogueEndingAction> endingActions;
 
     private void OnEnable()
     {
@@ -23,19 +36,29 @@ public class DialogCompilerController : MonoBehaviour
     {
         ShowNode(currentDialogueNode);
     }
+    
+    public void StartDialog(DialogueNodeSO node)
+    {
+        ShowNode(node);
+    }
 
     private void ShowNode(DialogueNodeSO node)
     {
         if (!node)
         {
             dialogueView.ResetView();
+            TriggerEndingAction(currentDialogueNode);
             return;
         }
 
         currentDialogueNode = node;
 
         var textsToDisplay = new List<string> { node.mainQuestionText };
-        textsToDisplay.AddRange(node.answers.Select(answer => answer.answerText));
+
+        if (node.answers != null)
+        {
+            textsToDisplay.AddRange(node.answers.Select(answer => answer.answerText));
+        }
 
         dialogueView.DisplayDialogue(textsToDisplay.ToArray());
     }
@@ -44,13 +67,13 @@ public class DialogCompilerController : MonoBehaviour
     {
         if (!currentDialogueNode)
             return;
-        
+
         if (currentDialogueNode.answers is { Length: > 0 })
             return;
 
         ShowNode(currentDialogueNode.nextNode);
     }
-    
+
     private void HandleAnswerChosen(int answerIndex)
     {
         if (!currentDialogueNode || currentDialogueNode.answers == null)
@@ -61,5 +84,14 @@ public class DialogCompilerController : MonoBehaviour
             var selectedAnswer = currentDialogueNode.answers[answerIndex];
             ShowNode(selectedAnswer.nextNode);
         }
+    }
+
+    private void TriggerEndingAction(DialogueNodeSO lastNode)
+    {
+        if (!lastNode) return;
+        
+        var ending = endingActions.FirstOrDefault(e => e.endingNode == lastNode);
+
+        ending?.onEndingReached?.Invoke();
     }
 }
