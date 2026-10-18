@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b28a067b4ea949b29dbaee71c156ac06, type: 3}
-  m_Name: 2 MyName
+  m_Name: 4 3.1 Finish
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNodeSO
-  mainQuestionText: "\u041C\u0435\u043D\u044F \u0437\u043E\u0432\u0443\u0442 WIN11"
-  nextNode: {fileID: 11400000, guid: f794b5d0dd508b542a46147d5d2ce962, type: 2}
+  mainQuestionText: 
+  nextNode: {fileID: 0}
   answers: []
