@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b28a067b4ea949b29dbaee71c156ac06, type: 3}
   m_Name: 4 3.1 Finish
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNodeSO
-  mainQuestionText: 
-  nextNode: {fileID: 0}
-  answers: []
+  <Node>k__BackingField:
+    Text:
+      Message: 
+      InputAnimation: {fileID: 0}
+      ProcessAnimation: {fileID: 0}
+    NextNode: {fileID: 11400000, guid: 155e5e9b2f4d5b9489b13999750688ed, type: 2}
+  <Answers>k__BackingField: []

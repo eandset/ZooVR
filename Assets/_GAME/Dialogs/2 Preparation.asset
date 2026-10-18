@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: 2 Preparation
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNodeSO
   <Node>k__BackingField:
-    Text: "\u0413\u043E\u0442\u043E\u0432\u0438\u043C \u0432\u0441\u0451 \u0434\u043B\u044F \u0432\u0430\u0441."
+    Text:
+      Message: "\u0413\u043E\u0442\u043E\u0432\u0438\u043C \u0432\u0441\u0451 \u0434\u043B\u044F \u0432\u0430\u0441."
+      InputAnimation: {fileID: 11400000, guid: cd9aeb6ee95d96b47bebf8e24ee7f23a, type: 2}
+      ProcessAnimation: {fileID: 0}
     NextNode: {fileID: 11400000, guid: 0efe918edb518ca4580b769a06a120b2, type: 2}
   <Answers>k__BackingField: []

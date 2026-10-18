@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: 1 Start
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNodeSO
   <Node>k__BackingField:
-    Text: "\u041F\u0440\u0438\u0432\u0435\u0442!"
+    Text:
+      Message: "\u041F\u0440\u0438\u0432\u0435\u0442!"
+      InputAnimation: {fileID: 11400000, guid: cd9aeb6ee95d96b47bebf8e24ee7f23a, type: 2}
+      ProcessAnimation: {fileID: 0}
     NextNode: {fileID: 11400000, guid: 05ded90bd17303545b4f55e3e2efcf01, type: 2}
   <Answers>k__BackingField: []
