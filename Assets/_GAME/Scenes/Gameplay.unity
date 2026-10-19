@@ -1701,11 +1701,11 @@ PrefabInstance:
     - target: {fileID: 2358667954146680434, guid: 78e816b6ed10e7044b4677cf544b52c6, type: 3}
       propertyPath: 'm_StartingHoverFilters.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 24851d22265a5a942a873f25da0b6763, type: 2}
+      objectReference: {fileID: 11400000, guid: 49e9093578cfe2949a27dd1220f54d7a, type: 2}
     - target: {fileID: 2358667954146680434, guid: 78e816b6ed10e7044b4677cf544b52c6, type: 3}
       propertyPath: 'm_StartingSelectFilters.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 24851d22265a5a942a873f25da0b6763, type: 2}
+      objectReference: {fileID: 11400000, guid: 49e9093578cfe2949a27dd1220f54d7a, type: 2}
     - target: {fileID: 2358667954146680434, guid: 78e816b6ed10e7044b4677cf544b52c6, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
       value: 4
@@ -1861,7 +1861,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4609019817497124638, guid: 78e816b6ed10e7044b4677cf544b52c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1015334017}
   m_SourcePrefab: {fileID: 100100000, guid: 78e816b6ed10e7044b4677cf544b52c6, type: 3}
 --- !u!1001 &177519387
 PrefabInstance:
@@ -2900,8 +2903,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56bac39d5fe5c564fa03d6fb63805932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
-  rigidbody: {fileID: 293547292}
-  interactable: {fileID: 293547291}
+  key: {fileID: 0}
 --- !u!1 &299611692 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3574172299559673525, guid: 402a68dd7ea15664ca5270461e7199b1, type: 3}
@@ -9442,8 +9444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56bac39d5fe5c564fa03d6fb63805932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
-  rigidbody: {fileID: 699509939}
-  interactable: {fileID: 699509938}
+  key: {fileID: 0}
 --- !u!4 &700623925 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7810079179384408652, guid: 17048c4b10c64ef459cf36164568b226, type: 3}
@@ -14685,6 +14686,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 894822543}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1015334012 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4609019817497124638, guid: 78e816b6ed10e7044b4677cf544b52c6, type: 3}
+  m_PrefabInstance: {fileID: 173118126}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1015334017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015334012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec705bc7f6e64fe4b4e499a6b1732bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Door
+  key: {fileID: 1543864308}
 --- !u!4 &1015855271 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8584579010103015668, guid: 3c0f1ddaca0065a42aa8426301bb050f, type: 3}
@@ -16556,11 +16575,11 @@ PrefabInstance:
     - target: {fileID: 2358667954146680434, guid: 78e816b6ed10e7044b4677cf544b52c6, type: 3}
       propertyPath: 'm_StartingHoverFilters.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 24851d22265a5a942a873f25da0b6763, type: 2}
+      objectReference: {fileID: 11400000, guid: 49e9093578cfe2949a27dd1220f54d7a, type: 2}
     - target: {fileID: 2358667954146680434, guid: 78e816b6ed10e7044b4677cf544b52c6, type: 3}
       propertyPath: 'm_StartingSelectFilters.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 24851d22265a5a942a873f25da0b6763, type: 2}
+      objectReference: {fileID: 11400000, guid: 49e9093578cfe2949a27dd1220f54d7a, type: 2}
     - target: {fileID: 2358667954146680434, guid: 78e816b6ed10e7044b4677cf544b52c6, type: 3}
       propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.size
       value: 4
@@ -16724,7 +16743,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4609019817497124638, guid: 78e816b6ed10e7044b4677cf544b52c6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2101572871}
   m_SourcePrefab: {fileID: 100100000, guid: 78e816b6ed10e7044b4677cf544b52c6, type: 3}
 --- !u!1 &1170223958 stripped
 GameObject:
@@ -31528,6 +31550,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 894822543}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2101572866 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4609019817497124638, guid: 78e816b6ed10e7044b4677cf544b52c6, type: 3}
+  m_PrefabInstance: {fileID: 1165801925}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2101572871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2101572866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec705bc7f6e64fe4b4e499a6b1732bf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Door
+  key: {fileID: 1869946498}
 --- !u!1001 &2101831754
 PrefabInstance:
   m_ObjectHideFlags: 0
