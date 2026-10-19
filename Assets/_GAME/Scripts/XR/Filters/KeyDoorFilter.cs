@@ -19,7 +19,7 @@ public class KeyDoorFilter : ScriptableObject, IXRSelectFilter, IXRHoverFilter
     private bool IsCompare(IXRInteractor interactor,  IXRInteractable interactable)
     {
         if (interactor.transform.TryGetComponent<Door>(out var door))
-            return door.KeyEntityId == interactable.transform.GetEntityId();
+            return door.Key == interactable.transform.gameObject;
         
         return false;
     }
