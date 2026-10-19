@@ -2,17 +2,24 @@ using UnityEngine;using UnityEngine.XR.Interaction.Toolkit.Filtering;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
-[CreateAssetMenu(fileName = "MyFilter", menuName = "My Tools/My Filter")]
-public class MyFilter : ScriptableObject, IXRSelectFilter, IXRHoverFilter
+[CreateAssetMenu(fileName = "TagFilter", menuName = "Filters/Tag")]
+public class TagFilter : ScriptableObject, IXRSelectFilter, IXRHoverFilter
 {
+    [SerializeField] private string tag;
+
     public bool Process(IXRSelectInteractor interactor, IXRSelectInteractable interactable)
     {
-        return interactable.transform.tag.Contains("Cube");
+        return IsCompare(interactable);
     }
 
     public bool Process(IXRHoverInteractor interactor, IXRHoverInteractable interactable)
     {
-        return interactable.transform.tag.Contains("Cube");
+        return IsCompare(interactable);
+    }
+
+    private bool IsCompare(IXRInteractable interactable)
+    {
+        return interactable.transform.CompareTag(tag);
     }
 
     public bool canProcess => true;
