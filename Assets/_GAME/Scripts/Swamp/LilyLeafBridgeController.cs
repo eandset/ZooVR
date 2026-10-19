@@ -6,7 +6,7 @@ public class LilyLeafBridgeController : MonoBehaviour
 {
     [SerializeField] private XRGrabInteractable interactable;
     [SerializeField] private PlayerDetector detector;
-    [SerializeField] private LilyLeafBridgeView view;
+    [SerializeField] private ReturnableObject view;
     [SerializeField] private XRSocketInteractor socket;
 
     private InteractableSocketDropDetector _dropDetector;
@@ -31,7 +31,7 @@ public class LilyLeafBridgeController : MonoBehaviour
         _socketGrabLocker.Initialize();
         _returnBlocker.Initialize();
 
-        _dropDetector.OnDroppedOutside += view.ReturnPosition;
+        _dropDetector.OnDroppedOutside += view.ReturnToStart;
         _dropDetector.OnDroppedInside += _socketGrabLocker.EnableSocket;
     }
 
@@ -42,7 +42,7 @@ public class LilyLeafBridgeController : MonoBehaviour
         _socketGrabLocker.Dispose();
         _returnBlocker.Dispose();
 
-        _dropDetector.OnDroppedOutside -= view.ReturnPosition;
+        _dropDetector.OnDroppedOutside -= view.ReturnToStart;
         _dropDetector.OnDroppedInside -= _socketGrabLocker.EnableSocket;
     }
 }
