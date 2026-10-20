@@ -12037,6 +12037,74 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &734734434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 734734435}
+  - component: {fileID: 734734436}
+  m_Layer: 0
+  m_Name: QuestManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &734734435
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734734434}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &734734436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734734434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791292963cf64c8c970ecf5f61fb5c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.QuestManager
+  database: {fileID: 11400000, guid: 36bd88272fc8aab419fcf3569e72c7b5, type: 2}
+  dontDestroyOnLoad: 1
+  useUnscaledTime: 0
+  autoLoad: 0
+  autoSave: 0
+  saveKey: 
+  onQuestUnlocked:
+    m_PersistentCalls:
+      m_Calls: []
+  onQuestStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  onQuestUpdated:
+    m_PersistentCalls:
+      m_Calls: []
+  onQuestCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  onQuestFailed:
+    m_PersistentCalls:
+      m_Calls: []
+  onRewardGranted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &737387793 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7810079179384408652, guid: 17048c4b10c64ef459cf36164568b226, type: 3}
@@ -12227,17 +12295,36 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3159739639010848033, guid: 257df0383871fe3478f861a45274558c, type: 3}
   m_PrefabInstance: {fileID: 4498813674539983219}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &771406869 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8355572120426893404, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
+  m_PrefabInstance: {fileID: 1967288399}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &771406870 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7266807767333663679, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
   m_PrefabInstance: {fileID: 1967288399}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 771406869}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cce46e907ced46d3a059d85d21489abd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogCompilerView
+--- !u!114 &771406874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771406869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f396306ab0c74679a46139a8be45af62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::QuestSystem.QuestActions
+  eventKey: 
+  amount: 1
 --- !u!4 &773932216 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6487471818965063604, guid: 402a68dd7ea15664ca5270461e7199b1, type: 3}
@@ -28163,7 +28250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4438927570447674392, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
       propertyPath: nodeActions.Array.data[0].onReached.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4438927570447674392, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
       propertyPath: nodeActions.Array.data[0].onReached.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -28172,7 +28259,7 @@ PrefabInstance:
     - target: {fileID: 4438927570447674392, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
       propertyPath: nodeActions.Array.data[0].onReached.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 11400000, guid: 4cae56564dde93a4cbd6600813fd4752, type: 2}
+      objectReference: {fileID: 771406874}
     - target: {fileID: 4438927570447674392, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
       propertyPath: nodeActions.Array.data[0].onReached.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -28187,7 +28274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4438927570447674392, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
       propertyPath: nodeActions.Array.data[0].onReached.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: 
+      value: StartQuest
       objectReference: {fileID: 0}
     - target: {fileID: 4438927570447674392, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
       propertyPath: endingActions.Array.data[0].onEndingReached.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -28211,7 +28298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4438927570447674392, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
       propertyPath: nodeActions.Array.data[0].onReached.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: QuestSystem.QuestActions, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4438927570447674392, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
       propertyPath: nodeActions.Array.data[0].onReached.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
@@ -28221,6 +28308,10 @@ PrefabInstance:
       propertyPath: nodeActions.Array.data[0].onReached.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4438927570447674392, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
+      propertyPath: nodeActions.Array.data[0].onReached.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 11400000, guid: 3cc6e4dcbfcaea248ac6f6eb5d002747, type: 2}
     - target: {fileID: 4438927570447674392, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
       propertyPath: endingActions.Array.data[0].onEndingReached.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
@@ -28235,7 +28326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4438927570447674392, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
       propertyPath: nodeActions.Array.data[0].onReached.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: QuestSystem.QuestConfig, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4438927570447674392, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
       propertyPath: endingActions.Array.data[0].onEndingReached.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -28305,6 +28396,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8355572120426893404, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 771406874}
     - targetCorrespondingSourceObject: {fileID: 7683439750331320052, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
@@ -35992,6 +36086,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 734734435}
   - {fileID: 1277400491}
   - {fileID: 1154873472}
   - {fileID: 378976343}
