@@ -28,7 +28,7 @@ namespace QuestSystem
 
         private void OnEnable()
         {
-            _manager = QuestManager.Instance != null ? QuestManager.Instance : FindFirstObjectByType<QuestManager>();
+            _manager = QuestManager.Instance != null ? QuestManager.Instance : FindAnyObjectByType<QuestManager>();
             if (_manager == null)
             {
                 Debug.LogWarning("[Quests] QuestEventHooks: QuestManager не найден.", this);

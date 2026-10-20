@@ -49,7 +49,7 @@ namespace QuestSystem
         {
             _m = manager != null ? manager
                 : QuestManager.Instance != null ? QuestManager.Instance
-                : FindFirstObjectByType<QuestManager>();
+                : FindAnyObjectByType<QuestManager>();
 
             if (_m == null)
             {
