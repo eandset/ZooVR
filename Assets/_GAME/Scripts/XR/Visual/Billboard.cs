@@ -5,10 +5,12 @@ public class Billboard : MonoBehaviour
 {
     public enum LookAxis
     {
-        ForwardZ, // Направлять ось Z (стандартный Forward)
-        ForwardX // Направлять ось X (редкие случаи, если меш повернут иначе)
+        ForwardZ,      // Локальная ось Z смотрит на цель
+        ForwardX,      // Локальная ось X смотрит на цель
+        BackZ,         // Ось -Z смотрит на цель
+        BackX          // Ось -X смотрит на цель
     }
-    
+
     [SerializeField] private LookAxis lookAxis = LookAxis.ForwardZ;
     [SerializeField] private float rotationSpeed = 10f;
 
@@ -24,7 +26,6 @@ public class Billboard : MonoBehaviour
 
     private void LateUpdate()
     {
-        // Если цель была уничтожена, пробуем найти ее снова
         if (!targetTransform)
         {
             FindTarget();
@@ -33,26 +34,42 @@ public class Billboard : MonoBehaviour
                 return;
         }
 
-        // Вычисляем направление на цель
-        Vector3 directionToTarget = targetTransform.position - transform.position;
+        Vector3 directionToTarget =
+            targetTransform.position - transform.position;
 
-        if (directionToTarget == Vector3.zero) return;
+        if (directionToTarget.sqrMagnitude < 0.000001f)
+            return;
 
-        // Определяем базовое вращение с учетом выбранной оси
-        Quaternion targetRotation = Quaternion.identity;
+        Quaternion targetRotation;
 
-        if (lookAxis == LookAxis.ForwardZ)
+        switch (lookAxis)
         {
-            // Стандартный случай: смотрим вперед по Z
-            targetRotation = Quaternion.LookRotation(directionToTarget);
-        }
-        else if (lookAxis == LookAxis.ForwardX)
-        {
-            // Поворот так, чтобы локальная ось X смотрела на цель
-            targetRotation = Quaternion.LookRotation(directionToTarget) * Quaternion.Euler(0, -90, 0);
+            case LookAxis.ForwardZ:
+                targetRotation = Quaternion.LookRotation(directionToTarget);
+                break;
+
+            case LookAxis.ForwardX:
+                targetRotation =
+                    Quaternion.LookRotation(directionToTarget) *
+                    Quaternion.Euler(0f, -90f, 0f);
+                break;
+
+            case LookAxis.BackZ:
+                targetRotation = Quaternion.LookRotation(-directionToTarget);
+                break;
+
+            case LookAxis.BackX:
+                targetRotation =
+                    Quaternion.LookRotation(-directionToTarget) *
+                    Quaternion.Euler(0f, -90f, 0f);
+                break;
+            
+            default:
+                targetRotation = Quaternion.LookRotation(directionToTarget);
+                break;
         }
 
-        // Применяем блокировку осей, если нужно
+        // Блокировка вращения по выбранным осям.
         if (lockAxis.x || lockAxis.y || lockAxis.z)
         {
             Vector3 currentEuler = transform.rotation.eulerAngles;
@@ -65,14 +82,18 @@ public class Billboard : MonoBehaviour
             targetRotation = Quaternion.Euler(finalX, finalY, finalZ);
         }
 
-        // Применяем вращение (мгновенно или сглажено)
+        // Применение вращения.
         if (rotationSpeed <= 0f)
         {
             transform.rotation = targetRotation;
         }
         else
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRotation,
+                rotationSpeed * Time.deltaTime
+            );
         }
     }
 
