@@ -7,9 +7,8 @@ using UnityEngine.Events;
 [Serializable]
 public class DialogueEndingAction
 {
-    public DialogueNodeSO endingNode;
-    
-    public UnityEvent onEndingReached;
+    public DialogueNodeSO node;
+    public UnityEvent onReached;
 }
 
 public class DialogCompilerController : MonoBehaviour
@@ -17,8 +16,8 @@ public class DialogCompilerController : MonoBehaviour
     [SerializeField] private DialogCompilerView dialogueView;
     [SerializeField] private DialogueNodeSO currentDialogueNode;
 
-    [Header("Endings & Actions")]
-    [SerializeField] private List<DialogueEndingAction> endingActions;
+    [Header("Actions")]
+    [SerializeField] private List<DialogueEndingAction> nodeActions;
 
     private void OnEnable()
     {
@@ -47,12 +46,19 @@ public class DialogCompilerController : MonoBehaviour
         if (!node)
         {
             dialogueView.ResetView();
-            TriggerEndingAction(currentDialogueNode);
             return;
         }
+        
+        TriggerAction(node);
 
         currentDialogueNode = node;
 
+        var textsToDisplay = CollectAllTexts(node);
+        dialogueView.DisplayDialogue(textsToDisplay.ToArray());
+    }
+
+    private static List<DialogueText> CollectAllTexts(DialogueNodeSO node)
+    {
         var textsToDisplay = new List<DialogueText> { node.Node.Text };
 
         if (node.Answers != null)
@@ -60,7 +66,7 @@ public class DialogCompilerController : MonoBehaviour
             textsToDisplay.AddRange(node.Answers.Select(x => x.Text));
         }
 
-        dialogueView.DisplayDialogue(textsToDisplay.ToArray());
+        return textsToDisplay;
     }
 
     private void ProceedToNextNode()
@@ -86,12 +92,9 @@ public class DialogCompilerController : MonoBehaviour
         }
     }
 
-    private void TriggerEndingAction(DialogueNodeSO lastNode)
+    private void TriggerAction(DialogueNodeSO node)
     {
-        if (!lastNode) return;
-        
-        var ending = endingActions.FirstOrDefault(e => e.endingNode == lastNode);
-
-        ending?.onEndingReached?.Invoke();
+        var ending = nodeActions.FirstOrDefault(e => e.node == node);
+        ending?.onReached?.Invoke();
     }
 }
