@@ -13,22 +13,22 @@ public class DialogueEndingAction
 
 public class DialogCompilerController : MonoBehaviour
 {
-    [SerializeField] private DialogCompilerView dialogueView;
+    [SerializeField] private DialogCompilerViewBase _dialogueViewBase;
     [SerializeField] private DialogueNodeSO currentDialogueNode;
 
     [Header("Actions")]
     [SerializeField] private List<DialogueEndingAction> nodeActions;
-
+    
     private void OnEnable()
     {
-        dialogueView.OnMainMonitorClicked.AddListener(ProceedToNextNode);
-        dialogueView.OnAnswerSelected.AddListener(HandleAnswerChosen);
+        _dialogueViewBase.OnMainMonitorClicked.AddListener(ProceedToNextNode);
+        _dialogueViewBase.OnAnswerSelected.AddListener(HandleAnswerChosen);
     }
 
     private void OnDisable()
     {
-        dialogueView.OnMainMonitorClicked.RemoveListener(ProceedToNextNode);
-        dialogueView.OnAnswerSelected.RemoveListener(HandleAnswerChosen);
+        _dialogueViewBase.OnMainMonitorClicked.RemoveListener(ProceedToNextNode);
+        _dialogueViewBase.OnAnswerSelected.RemoveListener(HandleAnswerChosen);
     }
 
     private void Start()
@@ -45,7 +45,7 @@ public class DialogCompilerController : MonoBehaviour
     {
         if (!node)
         {
-            dialogueView.ResetView();
+            _dialogueViewBase.ResetView();
             return;
         }
         
@@ -54,7 +54,7 @@ public class DialogCompilerController : MonoBehaviour
         currentDialogueNode = node;
 
         var textsToDisplay = CollectAllTexts(node);
-        dialogueView.DisplayDialogue(textsToDisplay.ToArray());
+        _dialogueViewBase.DisplayDialogue(textsToDisplay.ToArray());
     }
 
     private static List<DialogueText> CollectAllTexts(DialogueNodeSO node)

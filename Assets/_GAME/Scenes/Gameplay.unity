@@ -12227,6 +12227,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3159739639010848033, guid: 257df0383871fe3478f861a45274558c, type: 3}
   m_PrefabInstance: {fileID: 4498813674539983219}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &771406873 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6322619277736396551, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
+  m_PrefabInstance: {fileID: 1967288399}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36c7b4a7c91346a78df8b9c824508812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogCompilerAnimateView
 --- !u!4 &773932216 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6487471818965063604, guid: 402a68dd7ea15664ca5270461e7199b1, type: 3}
@@ -28115,6 +28126,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4438927570447674392, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
+      propertyPath: _dialogueViewBase
+      value: 
+      objectReference: {fileID: 771406873}
+    - target: {fileID: 4438927570447674392, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
       propertyPath: currentDialogueNode
       value: 
       objectReference: {fileID: 11400000, guid: 155e5e9b2f4d5b9489b13999750688ed, type: 2}
@@ -28198,6 +28213,10 @@ PrefabInstance:
       propertyPath: endingActions.Array.data[0].onEndingReached.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6322619277736396551, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6875548232628012574, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
       propertyPath: m_LocalPosition.x
       value: 144.55
@@ -28236,6 +28255,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6875548232628012574, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266807767333663679, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8355572120426893404, guid: 87aac1fa6e63e2e4c909fb1ee0d7dfce, type: 3}

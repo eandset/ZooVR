@@ -838,6 +838,7 @@ GameObject:
   - component: {fileID: 6875548232628012574}
   - component: {fileID: 4438927570447674392}
   - component: {fileID: 7266807767333663679}
+  - component: {fileID: 6322619277736396551}
   m_Layer: 0
   m_Name: Computer
   m_TagString: Untagged
@@ -882,8 +883,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d5614003fc04bdeb200ad6bb76277b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogCompilerController
-  dialogueView: {fileID: 7266807767333663679}
+  _dialogueViewBase: {fileID: 7266807767333663679}
   currentDialogueNode: {fileID: 0}
+  nodeActions: []
 --- !u!114 &7266807767333663679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -896,18 +898,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cce46e907ced46d3a059d85d21489abd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogCompilerView
-  mainMonitor: {fileID: 5677519746815091662}
-  answerMonitors:
-  - {fileID: 5874405498295561504}
-  - {fileID: 7975397479489891041}
-  - {fileID: 6802059426869379690}
-  delayBetweenAnswers: 0.2
   OnMainMonitorClicked:
     m_PersistentCalls:
       m_Calls: []
   OnAnswerSelected:
     m_PersistentCalls:
       m_Calls: []
+  mainMonitor: {fileID: 5677519746815091662}
+  answerMonitors:
+  - {fileID: 5874405498295561504}
+  - {fileID: 7975397479489891041}
+  - {fileID: 6802059426869379690}
+--- !u!114 &6322619277736396551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8355572120426893404}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36c7b4a7c91346a78df8b9c824508812, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogCompilerAnimateView
+  OnMainMonitorClicked:
+    m_PersistentCalls:
+      m_Calls: []
+  OnAnswerSelected:
+    m_PersistentCalls:
+      m_Calls: []
+  mainMonitor: {fileID: 5677519746815091662}
+  answerMonitors:
+  - {fileID: 5874405498295561504}
+  - {fileID: 7975397479489891041}
+  - {fileID: 6802059426869379690}
+  delayBetweenAnswers: 0.2
 --- !u!1 &8867257150204441948
 GameObject:
   m_ObjectHideFlags: 0
