@@ -23,4 +23,4 @@ MonoBehaviour:
       Message: "\u0425\u043E\u0440\u043E\u0448. \u0418 \u0433\u0434\u0435 \u043E\u043D?"
       InputAnimation: {fileID: 11400000, guid: 88930e5dd75931344969d520743e99c6, type: 2}
       ProcessAnimation: {fileID: 0}
-    NextNode: {fileID: 11400000, guid: 7fa68b7f8c2dab44c9f7e7a40b4ca048, type: 2}
+    NextNode: {fileID: 11400000, guid: b7a8f524062c7084f8a2e2ba6b25b82a, type: 2}
