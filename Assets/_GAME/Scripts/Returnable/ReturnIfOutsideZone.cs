@@ -15,7 +15,7 @@ public class ReturnIfOutsideZone : MonoBehaviour
         _interactable = GetComponent<XRBaseInteractable>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (!zone.bounds.Contains(transform.position))
             _returnable.ReturnToStart();
